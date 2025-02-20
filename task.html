@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Selection</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        .option {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .option input {
+            margin-right: 10px;
+        }
+        .option-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .selected {
+            border-color: green;
+        }
+        .details {
+            display: none;
+            margin-top: 10px;
+        }
+        .selected .details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .add-to-cart {
+            background: green;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .price-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .price {
+            font-weight: bold;
+        }
+        .discount {
+            color: green;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        select {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="option" onclick="selectOption(this, 195, 50)">
+            <input type="radio" name="product">
+            <div class="option-content">
+                <div>1 Pair</div>
+                <div class="price-container">
+                    <div class="price">DKK 195.00</div>
+                    <div class="details hidden">
+                        <label>Size:</label>
+                        <select><option>S</option><option>M</option><option>L</option></select>
+                        <label>Color:</label>
+                        <select><option>Red</option><option>Blue</option><option>Black</option></select>
+                    </div>
+                </div>
+            </div>
+            <div class="discount">50% OFF</div>
+        </div>
+        <div class="option" onclick="selectOption(this, 345, 40)">
+            <input type="radio" name="product">
+            <div class="option-content">
+                <div>2 Pair</div>
+                <div class="price-container">
+                    <div class="price">DKK 345.00</div>
+                    <div class="details hidden">
+                        <label>Size:</label>
+                        <select><option>S</option><option>M</option><option>L</option></select>
+                        <label>Color:</label>
+                        <select><option>Red</option><option>Blue</option><option>Black</option></select>
+                    </div>
+                </div>
+            </div>
+            <div class="discount">40% OFF</div>
+        </div>
+        <div class="option" onclick="selectOption(this, 528, 60)">
+            <input type="radio" name="product">
+            <div class="option-content">
+                <div>3 Pair</div>
+                <div class="price-container">
+                    <div class="price">DKK 528.00</div>
+                    <div class="details hidden">
+                        <label>Size:</label>
+                        <select><option>S</option><option>M</option><option>L</option></select>
+                        <label>Color:</label>
+                        <select><option>Red</option><option>Blue</option><option>Black</option></select>
+                    </div>
+                </div>
+            </div>
+            <div class="discount">60% OFF</div>
+        </div>
+        <p>Free 2 Day Shipping</p>
+        <p>Total: <span id="total-price">DKK 0.00</span></p>
+        <div class="add-to-cart">+ Add to Cart</div>
+    </div>
+
+    <script>
+        function selectOption(element, price, discount) {
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+                opt.querySelector('input').checked = false;
+                opt.querySelector('.details').classList.add('hidden');
+            });
+            element.classList.add('selected');
+            element.querySelector('input').checked = true;
+            element.querySelector('.details').classList.remove('hidden');
+            document.getElementById('total-price').textContent = 'DKK ' + price.toFixed(2);
+        }
+    </script>
+</body>
+</html>
